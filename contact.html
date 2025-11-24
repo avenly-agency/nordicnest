@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — Alex Design</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="cursor"></div>
+    
+    <nav class="nav">
+        <a href="index.html" class="logo">Alex.</a>
+        <div class="menu-toggle">MENU</div>
+    </nav>
+    
+    <div class="menu-overlay">
+        <div class="menu-links">
+            <a href="index.html" class="menu-link">Home</a>
+            <a href="index.html#work" class="menu-link">Projekty</a>
+            <a href="about.html" class="menu-link">O mnie</a>
+            <a href="contact.html" class="menu-link">Kontakt</a>
+        </div>
+    </div>
+
+    <main>
+        <header class="c-hero">
+            <div class="container">
+                <h1 class="c-hero__title reveal-up">
+                    LET'S WORK <br>
+                    <span class="italic">TOGETHER.</span>
+                </h1>
+            </div>
+        </header>
+
+        <section class="c-split">
+            <div class="container c-grid">
+                
+                <div class="c-info reveal-up">
+                    <div class="info-group">
+                        <span class="label">Napisz do mnie</span>
+                        <h2 class="big-email" id="email-trigger" data-email="hello@alex.com">
+                            hello@alex.com
+                            <span class="copy-tooltip">Kopiuj</span>
+                        </h2>
+                    </div>
+
+                    <div class="info-group">
+                        <span class="label">Socials</span>
+                        <ul class="social-list">
+                            <li><a href="#">Instagram ↗</a></li>
+                            <li><a href="#">LinkedIn ↗</a></li>
+                            <li><a href="#">Behance ↗</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="info-group">
+                        <span class="label">Lokalizacja</span>
+                        <p>Warszawa, Polska<br>Dostępny zdalnie (Worldwide)</p>
+                    </div>
+                </div>
+
+                <div class="c-form-wrapper reveal-up">
+                    <form class="minimal-form">
+                        <div class="form-group">
+                            <label for="name">Jak się nazywasz?</label>
+                            <input type="text" id="name" placeholder="Jan Kowalski" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Twój e-mail?</label>
+                            <input type="email" id="email" placeholder="jan@firma.pl" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="budget">Przybliżony budżet?</label>
+                            <select id="budget">
+                                <option value="" disabled selected>Wybierz zakres</option>
+                                <option value="small">< 5k PLN</option>
+                                <option value="medium">5k - 15k PLN</option>
+                                <option value="large">15k+ PLN</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Opowiedz o projekcie</label>
+                            <textarea id="message" rows="4" placeholder="Szukam rebrandingu dla..."></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            Wyślij Wiadomość
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+  <footer class="footer">
+    <div class="footer__content">
+        <h2 class="footer__cta">
+            Let's talk <br>
+            <span class="italic">business.</span>
+        </h2>
+
+        <a href="mailto:hello@alex.com" class="btn-circle">
+            <span>Email<br>Me</span>
+        </a>
+    </div>
+
+    <div class="footer__bottom">
+        <div class="footer__meta">
+            <span>&copy; <span class="current-year"></span> Alex Design</span>
+            <span class="made-by">Made by <a href="https://avenly.pl" target="_blank">Avenly</a></span>
+        </div>
+        
+        <div class="footer__socials">
+            <a href="#" target="_blank" rel="noopener">Instagram</a>
+            <a href="#" target="_blank" rel="noopener">Behance</a>
+            <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+    </div>
+</footer>
+
+    <script src="./js/main.js"></script>
+</body>
+</html>
