@@ -211,77 +211,75 @@
     <div class="modal__overlay" data-close-modal></div>
     
     <div class="modal__content">
-        <button class="modal__close" data-close-modal>&times;</button>
-        
-        <header class="modal__header">
-            <span class="text-highlight">Konfigurator</span>
-            <h3 id="modal-title">Model...</h3>
-        </header>
+    <button class="modal__close" data-close-modal>&times;</button>
+    
+    <header class="modal__header">
+        <span class="text-highlight">Konfigurator</span>
+        <h3 id="modal-title">Model...</h3>
+    </header>
 
-        <div id="modal-step-form">
-            <form class="config-form" id="config-form">
-                <input type="hidden" id="base-price" value="0">
-                
-                <div class="config-group">
-                    <h4 class="config-group__title">Ulepszenia</h4>
-                    <label class="checkbox-wrapper">
-                        <input type="checkbox" data-price="5000">
-                        <span class="checkmark"></span>
-                        <div class="checkbox-text">
-                            <span>Elewacja drewniana</span>
-                            <span>+5 000 zł</span>
-                        </div>
-                    </label>
-                     <label class="checkbox-wrapper">
-                        <input type="checkbox" data-price="3000">
-                        <span class="checkmark"></span>
-                        <div class="checkbox-text">
-                            <span>Pakiet Zimowy</span>
-                            <span>+3 000 zł</span>
-                        </div>
-                    </label>
+    <div id="modal-step-config">
+        <form class="config-form" id="config-form">
+            <input type="hidden" id="base-price" value="0">
+            
+            <div class="config-group">
+                <h4 class="config-group__title">Dostosuj model</h4>
+                <label class="checkbox-wrapper">
+                    <input type="checkbox" data-price="5000">
+                    <span class="checkmark"></span>
+                    <div class="checkbox-text"><span>Elewacja drewniana</span><span>+5 000 zł</span></div>
+                </label>
+                <label class="checkbox-wrapper">
+                    <input type="checkbox" data-price="8000">
+                    <span class="checkmark"></span>
+                    <div class="checkbox-text"><span>Fotowoltaika</span><span>+8 000 zł</span></div>
+                </label>
+                 </div>
+        </form>
+
+        <footer class="modal__footer">
+            <div class="price-summary">
+                <span>Suma:</span>
+                <strong class="price-large" id="total-price">0 zł</strong>
+            </div>
+            <button type="button" class="btn btn--primary btn--full" id="btn-next">Dalej: Dane kontaktowe</button>
+        </footer>
+    </div>
+
+    <div id="modal-step-lead" style="display: none;">
+        <div class="config-form">
+            <h4 class="config-group__title" style="margin-bottom: 1.5rem;">Gdzie wysłać wycenę?</h4>
+            
+            <form id="lead-form" class="general-form">
+                <div class="form-group">
+                    <label>Imię i Nazwisko</label>
+                    <input type="text" id="lead-name" placeholder="Wpisz imię..." class="form-input">
                 </div>
-                
-                 <div class="config-group">
-                    <h4 class="config-group__title">Dodatki</h4>
-                    <label class="checkbox-wrapper">
-                        <input type="checkbox" data-price="8000">
-                        <span class="checkmark"></span>
-                        <div class="checkbox-text">
-                            <span>Fotowoltaika</span>
-                            <span>+8 000 zł</span>
-                        </div>
-                    </label>
+                <div class="form-group">
+                    <label>Numer telefonu</label>
+                    <input type="tel" id="lead-phone" placeholder="+48 000 000 000" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Adres Email</label>
+                    <input type="email" id="lead-email" placeholder="twoj@email.pl" class="form-input">
                 </div>
             </form>
-
-            <footer class="modal__footer">
-                <div class="price-summary">
-                    <span>Suma:</span>
-                    <strong class="price-large" id="total-price">0 zł</strong>
-                </div>
-                <button type="button" class="btn btn--primary btn--full" id="btn-order">Zamawiam wycenę</button>
-            </footer>
         </div>
 
-        <div id="modal-step-success" class="modal__success" style="display: none;">
-            <div class="success-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-            <h3 class="heading-secondary">Dziękujemy!</h3>
-            <p class="text-body">Twoja konfiguracja została wysłana.</p>
-            
-            <div class="success-price-box">
-                <span>Przewidywany koszt:</span>
-                <strong class="price-large" id="success-price">0 zł</strong>
-            </div>
-
-            <p class="text-small">Skontaktujemy się z Tobą w ciągu 24h.</p>
-            <button class="btn btn--outline btn--full" data-close-modal>Wróć na stronę</button>
-        </div>
+        <footer class="modal__footer">
+            <button type="button" class="btn btn--primary btn--full" id="btn-submit">Wyślij zapytanie</button>
+            <button type="button" class="btn btn--text" id="btn-back" style="margin-top: 1rem;">Wróć do konfiguracji</button>
+        </footer>
     </div>
+
+    <div id="modal-step-success" class="modal__success" style="display: none;">
+        <div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3 class="heading-secondary">Dziękujemy!</h3>
+        <p>Wycena została wysłana.</p>
+        <div class="success-price-box"><span>Ostateczna kwota:</span><strong class="price-large" id="success-price">0 zł</strong></div>
+        <button class="btn btn--outline btn--full" data-close-modal>Zamknij</button>
+    </div>
+</div>
 </div>
     <script src="./js/main.js" type="module"></script>
 </body>

@@ -1003,3 +1003,93 @@ h1, h2, h3 {
     height: 300px;
   }
 }
+// style.scss
+
+// --- STYLE FORMULARZY (INPUTY) ---
+.general-form {
+  .form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+
+  label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-dark);
+  }
+
+  input, textarea, .form-input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-sage);
+      background-color: #FAFAFA;
+    }
+  }
+}
+
+// --- STYLE PODSTRONY KONTAKT ---
+.contact-grid {
+  display: grid;
+  gap: 4rem;
+  margin-top: 3rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1.5fr; // Info węższe, formularz szerszy
+  }
+}
+
+.contact-info {
+  .info-item {
+    margin-bottom: 2rem;
+    
+    h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--color-sage);
+    }
+    
+    p, a {
+      color: var(--color-grey);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    
+    a:hover { text-decoration: underline; color: var(--color-dark); }
+  }
+}
+/* =========================================
+   MODAL STEP ANIMATIONS
+   ========================================= */
+
+// Te klasy będą dodawane przez JS
+.anim-out {
+  opacity: 0;
+  transform: translateX(-20px); // Przesuń w lewo przy znikaniu
+  transition: all 0.3s ease-in;
+  pointer-events: none; // Zablokuj klikanie podczas animacji
+}
+
+.anim-in {
+  animation: slideInRight 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px); // Start z prawej
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

@@ -22,34 +22,41 @@ const formatPrice = (price) => new Intl.NumberFormat('pl-PL', { style: 'currency
 const updateCopyrightYear = () => { const el = document.querySelector('.current-year'); if(el) el.textContent = new Date().getFullYear(); };
 
 // --- CONFIGURATOR LOGIC (Z FIXEM HTML) ---
+// js/main.js - WERSJA Z 3 KROKAMI (CONFIG -> LEAD -> SUCCESS)
+
+// js/main.js
+
 const initConfigurator = () => {
     const modal = document.getElementById('config-modal');
+    if (!modal) return;
+
     const closeBtns = document.querySelectorAll('[data-close-modal]');
     
-    // Pobieramy widoki - JEŚLI ICH NIE MA W HTML, TU WYWALI BŁĄD
-    const stepForm = document.getElementById('modal-step-form');
+    // Ekrany (Kroki)
+    const stepConfig = document.getElementById('modal-step-config');
+    const stepLead = document.getElementById('modal-step-lead');
     const stepSuccess = document.getElementById('modal-step-success');
-    
-    // Zabezpieczenie: Jeśli nie zaktualizowałeś HTML, przerwij funkcję, żeby nie crashować strony
-    if (!stepForm || !stepSuccess) {
-        console.error("BRAK ELEMENTÓW W HTML: Upewnij się, że dodałeś id='modal-step-form' i 'modal-step-success' w index.html");
-        return;
-    }
 
-    const form = document.getElementById('config-form');
-    const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+    // Zmienna trzymająca aktualnie widoczny krok (na start: Config)
+    let currentStepEl = stepConfig;
+
+    const formConfig = document.getElementById('config-form');
+    const checkboxes = formConfig.querySelectorAll('input[type="checkbox"]');
+    const basePriceInput = document.getElementById('base-price');
     const totalPriceEl = document.getElementById('total-price');
     const successPriceEl = document.getElementById('success-price');
-    const basePriceInput = document.getElementById('base-price');
+    
+    // Inputy leadowe
+    const inputName = document.getElementById('lead-name');
 
     let currentDisplayedPrice = 0;
     let finalCalculatedPrice = 0;
     let animationFrameId = null;
 
+    // --- Animacja Ceny (Bez zmian) ---
     const animatePriceChange = (start, end) => {
         const startTime = performance.now();
         if (animationFrameId) cancelAnimationFrame(animationFrameId);
-
         const update = (now) => {
             const progress = Math.min((now - startTime) / 600, 1);
             const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
@@ -61,42 +68,104 @@ const initConfigurator = () => {
         animationFrameId = requestAnimationFrame(update);
     };
 
+    // --- NOWOŚĆ: Płynne Przełączanie Kroków ---
+    const switchStep = (nextStepEl) => {
+        if (!currentStepEl || !nextStepEl) return;
+
+        // 1. Animuj wyjście starego kroku
+        currentStepEl.classList.add('anim-out');
+
+        // 2. Poczekaj na koniec animacji wyjścia (300ms zgodnie z CSS)
+        setTimeout(() => {
+            // Ukryj stary
+            currentStepEl.style.display = 'none';
+            currentStepEl.classList.remove('anim-out');
+
+            // Pokaż nowy
+            nextStepEl.style.display = 'block';
+            
+            // Dodaj klasę animacji wejścia
+            nextStepEl.classList.add('anim-in');
+
+            // Opcjonalnie: Usuń klasę animacji po jej zakończeniu (dla czystości DOM)
+            setTimeout(() => {
+                nextStepEl.classList.remove('anim-in');
+            }, 400);
+
+            // Zaktualizuj referencję
+            currentStepEl = nextStepEl;
+            
+            // Scroll na górę modala (przydatne na mobile)
+            const content = document.querySelector('.modal__content');
+            if(content) content.scrollTop = 0;
+
+        }, 300); 
+    };
+
+    // --- Resetowanie ---
     const resetModalState = () => {
         modal.classList.remove('is-open');
         document.body.classList.remove('no-scroll');
         
         setTimeout(() => {
-            form.reset();
-            stepForm.style.display = 'block';
+            formConfig.reset();
+            if(inputName) inputName.value = '';
+            document.getElementById('lead-phone').value = '';
+            document.getElementById('lead-email').value = '';
+            
+            // Reset widoczności "na twardo" (bez animacji, bo modal jest zamknięty)
+            stepConfig.style.display = 'block';
+            stepLead.style.display = 'none';
             stepSuccess.style.display = 'none';
+            currentStepEl = stepConfig; // Reset zmiennej stanu
         }, 300);
     };
 
     closeBtns.forEach(btn => btn.addEventListener('click', resetModalState));
 
+    // --- Kalkulacja ---
     const calculateTotal = () => {
         let total = parseInt(basePriceInput.value) || 0;
         checkboxes.forEach(box => { if (box.checked) total += parseInt(box.dataset.price); });
         finalCalculatedPrice = total;
         animatePriceChange(currentDisplayedPrice, total);
     };
-
     checkboxes.forEach(box => box.addEventListener('change', calculateTotal));
 
-    // PRZYCISK ZAMÓWIENIA
-    const btnOrder = document.getElementById('btn-order');
-    if(btnOrder) {
-        btnOrder.addEventListener('click', () => {
-            successPriceEl.textContent = formatPrice(finalCalculatedPrice);
-            stepForm.style.display = 'none';
-            stepSuccess.style.display = 'block';
-            
-            // Scroll do góry modala
-            const content = document.querySelector('.modal__content');
-            if(content) content.scrollTop = 0;
+    // --- BUTTONS (Używamy teraz switchStep) ---
+    
+    // 1. Dalej
+    const btnNext = document.getElementById('btn-next');
+    if(btnNext) {
+        btnNext.addEventListener('click', () => {
+            switchStep(stepLead);
         });
     }
 
+    // 2. Wróć
+    const btnBack = document.getElementById('btn-back');
+    if(btnBack) {
+        btnBack.addEventListener('click', () => {
+            // Tutaj można by zrobić animację w drugą stronę (slideLeft), 
+            // ale dla uproszczenia użyjemy tej samej.
+            switchStep(stepConfig);
+        });
+    }
+
+    // 3. Wyślij
+    const btnSubmit = document.getElementById('btn-submit');
+    if(btnSubmit) {
+        btnSubmit.addEventListener('click', () => {
+            if(inputName.value.length < 3) {
+                alert("Proszę wpisać imię.");
+                return;
+            }
+            successPriceEl.textContent = formatPrice(finalCalculatedPrice);
+            switchStep(stepSuccess);
+        });
+    }
+
+    // --- Open ---
     window.openConfigurator = (title, price) => {
         document.getElementById('modal-title').textContent = title;
         basePriceInput.value = price;
@@ -105,9 +174,12 @@ const initConfigurator = () => {
         totalPriceEl.textContent = formatPrice(price);
         checkboxes.forEach(box => box.checked = false);
         
-        stepForm.style.display = 'block';
+        // Reset widoków na start
+        stepConfig.style.display = 'block';
+        stepLead.style.display = 'none';
         stepSuccess.style.display = 'none';
-        
+        currentStepEl = stepConfig;
+
         modal.classList.add('is-open');
         document.body.classList.add('no-scroll');
     };

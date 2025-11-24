@@ -3,127 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact — Alex Design</title>
+    <title>Kontakt | NordicNest</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/main.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="cursor"></div>
-    
     <nav class="nav">
-        <a href="index.html" class="logo">Alex.</a>
-        <div class="menu-toggle">MENU</div>
+        <div class="container nav__container">
+            <a href="index.html" class="nav__logo">
+                NordicNest<span class="text-highlight">.</span>
+            </a>
+            
+            <ul class="nav__links">
+                <li><a href="index.html#models" class="nav__link">Modele</a></li>
+                <li><a href="index.html#process" class="nav__link">Proces</a></li>
+                <li><a href="contact.html" class="nav__link" style="font-weight: bold; color: var(--color-sage);">Kontakt</a></li>
+            </ul>
+        </div>
     </nav>
-    
-    <div class="menu-overlay">
-        <div class="menu-links">
-            <a href="index.html" class="menu-link">Home</a>
-            <a href="index.html#work" class="menu-link">Projekty</a>
-            <a href="about.html" class="menu-link">O mnie</a>
-            <a href="contact.html" class="menu-link">Kontakt</a>
-        </div>
-    </div>
 
-    <main>
-        <header class="c-hero">
-            <div class="container">
-                <h1 class="c-hero__title reveal-up">
-                    LET'S WORK <br>
-                    <span class="italic">TOGETHER.</span>
-                </h1>
-            </div>
-        </header>
+    <section class="section-padding" style="margin-top: 80px;">
+        <div class="container">
+            <header class="section-header">
+                <h1 class="heading-secondary">Porozmawiajmy o Twojej przestrzeni</h1>
+                <p class="section-desc">Masz pytania dotyczące montażu lub personalizacji? Jesteśmy tu dla Ciebie.</p>
+            </header>
 
-        <section class="c-split">
-            <div class="container c-grid">
-                
-                <div class="c-info reveal-up">
-                    <div class="info-group">
-                        <span class="label">Napisz do mnie</span>
-                        <h2 class="big-email" id="email-trigger" data-email="hello@alex.com">
-                            hello@alex.com
-                            <span class="copy-tooltip">Kopiuj</span>
-                        </h2>
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <div class="info-item">
+                        <h3>Biuro Główne</h3>
+                        <p>ul. Minimalistyczna 14<br>00-950 Warszawa</p>
                     </div>
-
-                    <div class="info-group">
-                        <span class="label">Socials</span>
-                        <ul class="social-list">
-                            <li><a href="#">Instagram ↗</a></li>
-                            <li><a href="#">LinkedIn ↗</a></li>
-                            <li><a href="#">Behance ↗</a></li>
-                        </ul>
+                    <div class="info-item">
+                        <h3>Kontakt bezpośredni</h3>
+                        <p><a href="tel:+48500600700">+48 500 600 700</a></p>
+                        <p><a href="mailto:hello@nordicnest.pl">hello@nordicnest.pl</a></p>
                     </div>
-
-                    <div class="info-group">
-                        <span class="label">Lokalizacja</span>
-                        <p>Warszawa, Polska<br>Dostępny zdalnie (Worldwide)</p>
+                    <div class="info-item">
+                        <h3>Godziny otwarcia</h3>
+                        <p>Pn - Pt: 9:00 - 17:00</p>
                     </div>
                 </div>
 
-                <div class="c-form-wrapper reveal-up">
-                    <form class="minimal-form">
-                        <div class="form-group">
-                            <label for="name">Jak się nazywasz?</label>
-                            <input type="text" id="name" placeholder="Jan Kowalski" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Twój e-mail?</label>
-                            <input type="email" id="email" placeholder="jan@firma.pl" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="budget">Przybliżony budżet?</label>
-                            <select id="budget">
-                                <option value="" disabled selected>Wybierz zakres</option>
-                                <option value="small">< 5k PLN</option>
-                                <option value="medium">5k - 15k PLN</option>
-                                <option value="large">15k+ PLN</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">Opowiedz o projekcie</label>
-                            <textarea id="message" rows="4" placeholder="Szukam rebrandingu dla..."></textarea>
-                        </div>
-
-                        <button type="submit" class="submit-btn">
-                            Wyślij Wiadomość
-                        </button>
-                    </form>
-                </div>
-
+                <form class="general-form reveal reveal-delay-1">
+                    <div class="form-group">
+                        <label>Imię i Nazwisko</label>
+                        <input type="text" placeholder="Jan Kowalski" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Adres Email</label>
+                        <input type="email" placeholder="jan@przyklad.pl" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Wiadomość</label>
+                        <textarea rows="5" placeholder="Dzień dobry, interesuje mnie model Oslo..."></textarea>
+                    </div>
+                    <button type="button" class="btn btn--primary btn--full" onclick="alert('Wiadomość wysłana!')">Wyślij wiadomość</button>
+                </form>
             </div>
-        </section>
-    </main>
-
-  <footer class="footer">
-    <div class="footer__content">
-        <h2 class="footer__cta">
-            Let's talk <br>
-            <span class="italic">business.</span>
-        </h2>
-
-        <a href="mailto:hello@alex.com" class="btn-circle">
-            <span>Email<br>Me</span>
-        </a>
-    </div>
-
-    <div class="footer__bottom">
-        <div class="footer__meta">
-            <span>&copy; <span class="current-year"></span> Alex Design</span>
-            <span class="made-by">Made by <a href="https://avenly.pl" target="_blank">Avenly</a></span>
         </div>
-        
-        <div class="footer__socials">
-            <a href="#" target="_blank" rel="noopener">Instagram</a>
-            <a href="#" target="_blank" rel="noopener">Behance</a>
-            <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer__container">
+            <div class="footer__brand">
+                <span class="footer__logo">NordicNest.</span>
+                <p>Tworzymy przestrzeń dla Twoich myśli.</p>
+            </div>
+            <div class="footer__contact">
+                <p>hello@nordicnest.pl</p>
+                <p>+48 500 600 700</p>
+            </div>
         </div>
-    </div>
-</footer>
+        <div class="footer__bottom">
+            <p>&copy; <span class="current-year">2024</span> NordicNest.</p>
+        </div>
+    </footer>
 
     <script src="./js/main.js"></script>
 </body>
